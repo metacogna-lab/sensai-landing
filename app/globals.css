@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --color-sand: #EFECE6;
+  --color-paper: #F6F5F0;
+  --color-ink: #16181D;
+  --color-slate: #3A4258;
+  --color-vermilion: #C0371B;
+  --color-hairline: #D8D4C8;
+  --color-wash: #EDEBE3;
+  --color-header: #E2DFD8;
+
+  --font-display: var(--font-noto-serif-jp), serif;
+  --font-body: var(--font-noto-serif-jp), serif;
+  --font-mono: var(--font-noto-serif-jp), serif;
+}
+
+body {
+  background-color: transparent;
+  color: var(--color-ink);
+}
