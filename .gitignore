@@ -1,16 +1,17 @@
-# dependencies (bun install)
+# dependencies
 node_modules
 
 # output
 dist
 out
 *.tgz
-.next/dev/*
 .next
 .open-next
 .vercel
 .wrangler
 
+# package managers
+bun.lock
 
 # code coverage
 coverage
