@@ -14,14 +14,16 @@ Use **OpenNext** output (`.open-next/worker.js`) instead.
 
 ## Cloudflare Pages dashboard (Git-connected)
 
+The [`wrangler.jsonc`](wrangler.jsonc) file is the source of truth. Connect the repo to Cloudflare Pages with:
+
 | Setting | Value |
 |---------|-------|
 | Framework preset | None |
-| Build command | `npm run cf:build` or `npx opennextjs-cloudflare build` |
-| Build output directory | *(leave empty — OpenNext manages output)* |
-| Deploy command | *(empty)* or `npx opennextjs-cloudflare deploy` |
+| Build command | `npm run cf:build` |
+| Build output directory | *(auto-detected from wrangler.jsonc)* |
+| Deploy command | *(empty)* |
 
-**Do not** set deploy command to bare `wrangler deploy` without running `opennextjs-cloudflare build` first.
+**Do not** set build command to bare `wrangler deploy` — always use the OpenNext pipeline.
 
 ## CLI deploy
 
@@ -30,7 +32,7 @@ npm install
 npm run deploy
 ```
 
-This runs `opennextjs-cloudflare build` then `opennextjs-cloudflare deploy` using [`wrangler.jsonc`](wrangler.jsonc).
+This runs `opennextjs-cloudflare build` then `opennextjs-cloudflare deploy` using [`wrangler.jsonc`](wrangler.jsonc). `wrangler.jsonc` defines the output directory (`.open-next/assets`) and compatibility settings.
 
 ## Local preview (Workers runtime)
 
@@ -40,9 +42,9 @@ npm run preview
 
 ## Environment variables
 
-Set in the Cloudflare dashboard (or `wrangler secret put`):
+Set in the Cloudflare dashboard or `npx wrangler secret put`:
 
-- `HUBSPOT_PORTAL_ID` (optional)
+- `HUBSPOT_PORTAL_ID` (optional — contact form degrades gracefully)
 - `HUBSPOT_FORM_ID` (optional)
 
 ## Verify build locally
