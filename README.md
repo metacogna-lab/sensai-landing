@@ -45,10 +45,13 @@ In the Cloudflare dashboard, connect this repository and use:
 | Setting | Value |
 |---------|-------|
 | Framework preset | None |
-| Build command | `npx opennextjs-cloudflare build` |
-| Build output directory | `.open-next` (managed by OpenNext) |
+| Build command | `npm run cf:build` |
+| Build output directory | *(leave empty — OpenNext manages `.open-next/`)* |
+| Deploy command | *(empty)* or `npx opennextjs-cloudflare deploy` |
 
-For Workers-style CLI deploys, `npm run deploy` runs the full OpenNext build and `wrangler deploy`.
+**Important:** Do not use bare `wrangler deploy` or a `[site]` block in Wrangler config — that causes `workers-site/index.js` not found errors. See [DEPLOYMENT.md](DEPLOYMENT.md).
+
+For Workers-style CLI deploys, `npm run deploy` runs the full OpenNext build and deploy.
 
 Set production secrets in the Cloudflare dashboard (or via `wrangler secret put`):
 
