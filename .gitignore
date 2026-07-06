@@ -11,6 +11,8 @@ out
 .wrangler
 
 # package managers
+bun.lock
+bun.lockb
 
 # code coverage
 coverage

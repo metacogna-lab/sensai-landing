@@ -11,14 +11,14 @@
 
 | Command | What it actually does |
 |---------|----------------------|
-| `bun run dev` | Starts the Bun scratch app (`localhost:3000`). **NOT Next.js.** |
-| `bun run preview` | `wrangler dev` — local Cloudflare Workers preview. Only way to test Next.js locally. |
-| `bun run build` | `next build` — builds Next.js for production |
-| `bun run cf:build` | `npx @opennextjs/cloudflare build` — Full OpenNext Cloudflare build |
-| `bun run deploy` | `npx @opennextjs/cloudflare deploy` — Deploys to Cloudflare Workers |
-| `bun run clean` | `rm -rf .next .open-next` — clean build artifacts |
-| `bun test` | No tests exist yet. Framework: `bun:test` |
-| `bun install` | Install deps (canonical lockfile: `bun.lock`) |
+| `npm run dev` | Starts the Bun scratch app (`localhost:3000`). **NOT Next.js.** Requires `bun` installed locally. |
+| `npm run preview` | `wrangler dev` — local Cloudflare Workers preview. Only way to test Next.js locally. |
+| `npm run build` | `next build` — builds Next.js for production |
+| `npm run cf:build` | `npx @opennextjs/cloudflare build` — Full OpenNext Cloudflare build |
+| `npm run deploy` | `npx @opennextjs/cloudflare deploy` — Deploys to Cloudflare Workers |
+| `npm run clean` | `rm -rf .next .open-next` — clean build artifacts |
+| `npm test` | No tests exist yet. |
+| `npm install` | Install deps (canonical lockfile: `package-lock.json`) |
 
 ## Gotchas
 
@@ -28,8 +28,4 @@
 - **HubSpot env vars** (`HUBSPOT_PORTAL_ID`, `HUBSPOT_FORM_ID` in `.env.example`) are optional — contact API degrades gracefully.
 - **`_headers`** in `public/` sets 1-year immutable cache for `/_next/static/*`.
 - Never use bare `wrangler deploy` with a `[site]` block — causes `workers-site/index.js` not found errors.
-
-## Existing instruction files
-
-- `CLAUDE.md` — generic Bun-over-Node.js guidance (applies broadly but not repo-specific)
-- `.cursor/rules/use-bun-instead-of-node-vite-npm-pnpm.mdc` — identical copy
+- **Package manager is `npm`**, not bun. `bun.lock` removed — `package-lock.json` is canonical. The `.cursor/rules/` and `CLAUDE.md` advocating bun were removed for consistency.
