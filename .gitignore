@@ -2,9 +2,15 @@
 node_modules
 
 # output
-out
 dist
+out
 *.tgz
+.next/dev/*
+.next
+.open-next
+.vercel
+.wrangler
+
 
 # code coverage
 coverage
