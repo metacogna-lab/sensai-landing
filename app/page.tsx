@@ -19,7 +19,7 @@ export default function SensaiLanding() {
             Sensai Studio
           </h1>
           <p className="font-display text-2xl md:text-3xl lg:text-4xl text-ink font-semibold italic mb-10 opacity-90">
-            Symmetrical Intelligenge Augmentation in Action.
+            Symmetrical Intelligence Augmentation in Action.
           </p>
         </FadeIn>
 
