@@ -33,10 +33,23 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://sensaistudio.com'),
   title: 'Sensai Studio',
   description: 'High Performance AI Excellence. We combine Zen philosophy with modern technology to build focused, high-performance applications.',
-  openGraph: { title: 'Sensai Studio', description: 'High Performance AI Excellence. We combine Zen philosophy with modern technology to build focused, high-performance applications.', url: 'https://sensaistudio.com', siteName: 'Sensai Studio', locale: 'en_US', type: 'website' },
-  twitter: { card: 'summary_large_image', title: 'Sensai Studio', description: 'High Performance AI Excellence. We combine Zen philosophy with modern technology to build focused, high-performance applications.' },
+  openGraph: {
+    title: 'Sensai Studio',
+    description: 'High Performance AI Excellence. We combine Zen philosophy with modern technology to build focused, high-performance applications.',
+    url: 'https://sensaistudio.com',
+    siteName: 'Sensai Studio',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Sensai Studio',
+    description: 'High Performance AI Excellence. We combine Zen philosophy with modern technology to build focused, high-performance applications.',
+    site: '@sensaistudio',
+  },
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {

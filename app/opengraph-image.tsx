@@ -19,44 +19,111 @@ export default async function Image() {
           width: "100%",
           height: "100%",
           display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
           backgroundColor: "#F6F5F0",
-          padding: "60px 80px",
+          fontFamily: "serif",
+          position: "relative",
         }}
       >
-        <img
-          src={imgSrc}
-          width={260}
-          height={260}
-          style={{ objectFit: "contain", marginBottom: 36 }}
-          alt=""
-        />
+        {/* Subtle top + bottom border lines */}
+        <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 4, backgroundColor: "#16181D", display: "flex" }} />
+        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 4, backgroundColor: "#16181D", display: "flex" }} />
+
+        {/* Left column — enso image */}
         <div
           style={{
-            fontSize: 76,
-            fontWeight: 900,
-            color: "#16181D",
-            letterSpacing: "-0.02em",
-            lineHeight: 1,
-            marginBottom: 20,
-            fontFamily: "serif",
+            width: 520,
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0,
+            paddingLeft: 72,
           }}
         >
-          Sensai Studio
+          <img
+            src={imgSrc}
+            width={370}
+            height={370}
+            style={{ objectFit: "contain", mixBlendMode: "multiply" }}
+            alt=""
+          />
         </div>
+
+        {/* Vertical divider */}
         <div
           style={{
-            fontSize: 26,
-            fontWeight: 400,
-            color: "#3A4258",
-            letterSpacing: "0.16em",
-            textTransform: "uppercase",
-            fontFamily: "sans-serif",
+            width: 1,
+            height: 260,
+            backgroundColor: "#D8D4C8",
+            alignSelf: "center",
+            flexShrink: 0,
+          }}
+        />
+
+        {/* Right column — text */}
+        <div
+          style={{
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            paddingLeft: 72,
+            paddingRight: 72,
+            gap: 0,
           }}
         >
-          High Performance AI Excellence
+          {/* Eyebrow */}
+          <div
+            style={{
+              fontSize: 13,
+              fontFamily: "sans-serif",
+              fontWeight: 400,
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              color: "#3A4258",
+              marginBottom: 28,
+            }}
+          >
+            Sensai Studio
+          </div>
+
+          {/* Main headline */}
+          <div
+            style={{
+              fontSize: 62,
+              fontWeight: 900,
+              color: "#16181D",
+              letterSpacing: "-0.02em",
+              lineHeight: 1.05,
+              marginBottom: 32,
+            }}
+          >
+            High{"\n"}Performance{"\n"}AI Excellence
+          </div>
+
+          {/* Rule */}
+          <div
+            style={{
+              width: 48,
+              height: 2,
+              backgroundColor: "#16181D",
+              marginBottom: 28,
+              display: "flex",
+            }}
+          />
+
+          {/* URL */}
+          <div
+            style={{
+              fontSize: 15,
+              fontFamily: "monospace",
+              fontWeight: 400,
+              letterSpacing: "0.08em",
+              color: "#3A4258",
+            }}
+          >
+            sensaistudio.com
+          </div>
         </div>
       </div>
     ),
