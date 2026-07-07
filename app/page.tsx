@@ -14,7 +14,7 @@ export default function SensaiLanding() {
         </div>
 
         {/* Promise */}
-        <FadeIn delay={1.2} className="flex flex-col items-center mt-4">
+        <FadeIn delay={0.2} className="flex flex-col items-center mt-4">
           <h1 className="font-display font-black text-6xl md:text-7xl lg:text-8xl leading-tight mb-4 tracking-tight text-ink">
             Sensai Studio
           </h1>
@@ -24,14 +24,14 @@ export default function SensaiLanding() {
         </FadeIn>
 
         {/* Supporting sentence */}
-        <FadeIn delay={1.4}>
+        <FadeIn delay={0.4}>
           <p className="text-ink font-bold text-lg md:text-xl max-w-lg mx-auto leading-relaxed mb-12">
             Understand your own decisions — how you read risk and allocate capital at the speed of thought.
           </p>
         </FadeIn>
 
         {/* Contact Form */}
-        <FadeIn delay={1.6} className="w-full max-w-xl">
+        <FadeIn delay={0.6} className="w-full max-w-xl">
           <ContactBox />
         </FadeIn>
       </main>

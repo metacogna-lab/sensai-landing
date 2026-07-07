@@ -4,6 +4,7 @@ import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import NeuralBackground from '@/components/ui/flow-field-background';
+import EnsoLoader from '@/components/EnsoLoader';
 import Link from 'next/link';
 
 const notoSerifJP = Noto_Serif_JP({
@@ -33,15 +34,16 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: 'Sensai Studio',
-  description: 'Your guide in performant action. We combine Zen philosophy with modern technology to build focused, high-performance applications.',
-  openGraph: { title: 'Sensai Studio', description: 'Your guide in performant action. We combine Zen philosophy with modern technology to build focused, high-performance applications.', url: 'https://sensaistudio.com', siteName: 'Sensai Studio', locale: 'en_US', type: 'website' },
-  twitter: { card: 'summary_large_image', title: 'Sensai Studio', description: 'Your guide in performant action. We combine Zen philosophy with modern technology to build focused, high-performance applications.' },
+  description: 'High Performance AI Excellence. We combine Zen philosophy with modern technology to build focused, high-performance applications.',
+  openGraph: { title: 'Sensai Studio', description: 'High Performance AI Excellence. We combine Zen philosophy with modern technology to build focused, high-performance applications.', url: 'https://sensaistudio.com', siteName: 'Sensai Studio', locale: 'en_US', type: 'website' },
+  twitter: { card: 'summary_large_image', title: 'Sensai Studio', description: 'High Performance AI Excellence. We combine Zen philosophy with modern technology to build focused, high-performance applications.' },
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en" className={`${notoSerifJP.variable} ${inter.variable} ${jetbrainsMono.variable} ${dancingScript.variable}`}>
       <body suppressHydrationWarning className="font-body antialiased min-h-screen text-ink flex flex-col selection:bg-wash selection:text-ink relative">
+        <EnsoLoader />
         <NeuralBackground />
         <Header />
         
