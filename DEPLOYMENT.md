@@ -1,56 +1,61 @@
 # Cloudflare Deployment
 
-This project deploys to Cloudflare via [`@opennextjs/cloudflare`](https://opennext.js.org/cloudflare) and [`wrangler.jsonc`](wrangler.jsonc).
+This project deploys to **Cloudflare Workers** (with static Assets) via [`@opennextjs/cloudflare`](https://opennext.js.org/cloudflare) and [`wrangler.jsonc`](wrangler.jsonc).
 
-## Do not use Workers Sites
+## Architecture
 
-Never add a `[site]` block to Wrangler config. That legacy pattern makes `wrangler deploy` look for `workers-site/index.js` and fails with:
+`@opennextjs/cloudflare@1.x` targets **Cloudflare Workers + Assets**, not Cloudflare Pages.
 
-```
-The entry-point file at "workers-site/index.js" was not found.
-```
+| File | Purpose |
+|------|---------|
+| `.open-next/worker.js` | SSR Worker entry point — wrangler bundles this on deploy |
+| `.open-next/assets/` | Static files served by the `ASSETS` binding |
 
-Use **OpenNext** output (`.open-next/worker.js`) instead.
+## Cloudflare dashboard setup (git-connected Worker)
 
-## Cloudflare Pages dashboard (Git-connected)
-
-The [`wrangler.jsonc`](wrangler.jsonc) file is the source of truth. Connect the repo to Cloudflare Pages with:
+In **Workers & Pages → Create application → Workers**:
 
 | Setting | Value |
 |---------|-------|
-| Framework preset | None |
 | Build command | `npm run cf:build` |
-| Build output directory | *(auto-detected from wrangler.jsonc)* |
-| Deploy command | *(empty)* |
+| Deploy command | `npx wrangler deploy` (or leave empty and use CLI deploy) |
+| Node.js version | 22 (set `NODE_VERSION=22` in project env vars) |
 
-**Do not** set build command to bare `wrangler deploy` — always use the OpenNext pipeline.
+> **If you have an existing Pages project**: you must delete it and create a new Worker project, or migrate by going to the project settings and switching to Workers format. Cloudflare Pages with `pages_build_output_dir` is incompatible with `@opennextjs/cloudflare@1.x`.
 
-## CLI deploy
+## CLI deploy (recommended for first deploy)
 
 ```bash
 npm install
-npm run deploy
+npm run cf:build        # Next.js build → OpenNext bundle
+npx wrangler deploy     # Bundle worker and push to Cloudflare
 ```
 
-This runs `opennextjs-cloudflare build` then `opennextjs-cloudflare deploy` using [`wrangler.jsonc`](wrangler.jsonc). `wrangler.jsonc` defines the output directory (`.open-next/assets`) and compatibility settings.
-
-## Local preview (Workers runtime)
+Or in one step:
 
 ```bash
-npm run preview
+npm run deploy          # runs opennextjs-cloudflare deploy (= cf:build + wrangler deploy)
+```
+
+## Local preview (Cloudflare Workers runtime)
+
+```bash
+npm run preview         # wrangler dev
 ```
 
 ## Environment variables
 
-Set in the Cloudflare dashboard or `npx wrangler secret put`:
+Set via the Cloudflare dashboard (Workers → Settings → Variables) or `npx wrangler secret put`:
 
-- `HUBSPOT_PORTAL_ID` (optional — contact form degrades gracefully)
-- `HUBSPOT_FORM_ID` (optional)
+| Variable | Notes |
+|----------|-------|
+| `HUBSPOT_PORTAL_ID` | Optional — contact form degrades gracefully without it |
+| `HUBSPOT_FORM_ID` | Optional |
 
 ## Verify build locally
 
 ```bash
 npm run clean
 npm run cf:build
-ls .open-next/worker.js .open-next/assets
+ls .open-next/worker.js .open-next/assets/
 ```

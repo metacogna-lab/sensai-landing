@@ -1,9 +1,13 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "sensai-landing",
-  "pages_build_output_dir": ".open-next/assets",
+  // Entry point for the SSR worker (produced by `npm run cf:build`)
+  "main": ".open-next/worker.js",
   "compatibility_date": "2026-07-06",
-  "compatibility_flags": [
-    "nodejs_compat"
-  ]
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    // Static assets produced by the build — wrangler serves these via ASSETS binding
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  }
 }
